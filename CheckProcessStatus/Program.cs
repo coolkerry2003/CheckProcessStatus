@@ -24,14 +24,14 @@ namespace CheckProcessStatus
         static int lastMinute = DateTime.Now.Minute-gap;
         static void Main(string[] args)
         {
-            string name = "VIGOR_ClinicalMonitor";
-            //string name = "3R_DriverMonitor";
-            t_cpuCounter = new PerformanceCounter("Process", "% Processor Time", "_Total");
-            cpuCounter = new PerformanceCounter("Process", "% Processor Time", name);
-            ramCounter = new PerformanceCounter("Process", "Working Set", name);
-
             try
             {
+                string name = "VIGOR_ClinicalMonitor";
+                //string name = "3R_DriverMonitor";
+                t_cpuCounter = new PerformanceCounter("Process", "% Processor Time", "_Total");
+                cpuCounter = new PerformanceCounter("Process", "% Processor Time", name);
+                ramCounter = new PerformanceCounter("Process", "Working Set", name);
+
                 Message($">>{name} <系統監控中>...每{gap}分鐘進行監測");
                 System.Timers.Timer t = new System.Timers.Timer(1000);
                 t.Elapsed += new ElapsedEventHandler(TimerElapsed);
